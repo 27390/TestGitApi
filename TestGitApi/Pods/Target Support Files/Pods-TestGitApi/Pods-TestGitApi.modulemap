@@ -1,0 +1,6 @@
+framework module Pods_TestGitApi {
+  umbrella header "Pods-TestGitApi-umbrella.h"
+
+  export *
+  module * { export * }
+}
