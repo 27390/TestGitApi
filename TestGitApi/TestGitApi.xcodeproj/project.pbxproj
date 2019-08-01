@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -15,6 +15,13 @@
 		FA702E8822F0FA3F00EE9A13 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA702E8722F0FA3F00EE9A13 /* Assets.xcassets */; };
 		FA702E8B22F0FA3F00EE9A13 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA702E8922F0FA3F00EE9A13 /* LaunchScreen.storyboard */; };
 		FA702E9622F0FA4000EE9A13 /* TestGitApiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA702E9522F0FA4000EE9A13 /* TestGitApiTests.swift */; };
+		FA702EA222F1008300EE9A13 /* GitSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA702EA122F1008300EE9A13 /* GitSearchViewController.swift */; };
+		FA702EA622F100E900EE9A13 /* APIRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA702EA522F100E900EE9A13 /* APIRequestManager.swift */; };
+		FA702EA922F237E000EE9A13 /* RepositoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA702EA822F237E000EE9A13 /* RepositoryModel.swift */; };
+		FA702EAD22F23A6B00EE9A13 /* GitRepositoriesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA702EAC22F23A6B00EE9A13 /* GitRepositoriesViewModel.swift */; };
+		FA702EB322F254DA00EE9A13 /* RepoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA702EB222F254DA00EE9A13 /* RepoCell.swift */; };
+		FA702EB522F257B400EE9A13 /* GitRepositoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA702EB422F257B400EE9A13 /* GitRepositoryViewModel.swift */; };
+		FA702EB722F2596600EE9A13 /* RepoCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA702EB622F2596600EE9A13 /* RepoCellViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +51,13 @@
 		FA702E9122F0FA4000EE9A13 /* TestGitApiTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TestGitApiTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA702E9522F0FA4000EE9A13 /* TestGitApiTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestGitApiTests.swift; sourceTree = "<group>"; };
 		FA702E9722F0FA4000EE9A13 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FA702EA122F1008300EE9A13 /* GitSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitSearchViewController.swift; sourceTree = "<group>"; };
+		FA702EA522F100E900EE9A13 /* APIRequestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequestManager.swift; sourceTree = "<group>"; };
+		FA702EA822F237E000EE9A13 /* RepositoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryModel.swift; sourceTree = "<group>"; };
+		FA702EAC22F23A6B00EE9A13 /* GitRepositoriesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitRepositoriesViewModel.swift; sourceTree = "<group>"; };
+		FA702EB222F254DA00EE9A13 /* RepoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoCell.swift; sourceTree = "<group>"; };
+		FA702EB422F257B400EE9A13 /* GitRepositoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitRepositoryViewModel.swift; sourceTree = "<group>"; };
+		FA702EB622F2596600EE9A13 /* RepoCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepoCellViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,7 +97,6 @@
 				E1751292899587152B3DCD60 /* Pods-TestGitApiTests.debug.xcconfig */,
 				B5BB70C7B9E62E04D7E8CFAD /* Pods-TestGitApiTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -110,6 +123,9 @@
 		FA702E7C22F0FA3E00EE9A13 /* TestGitApi */ = {
 			isa = PBXGroup;
 			children = (
+				FA702EA422F100BF00EE9A13 /* Views */,
+				FA702EA322F100A800EE9A13 /* Classes */,
+				FA702EA022F1005500EE9A13 /* View Controllers */,
 				FA702E7D22F0FA3E00EE9A13 /* AppDelegate.swift */,
 				FA702E8122F0FA3E00EE9A13 /* Main.storyboard */,
 				FA702E8722F0FA3F00EE9A13 /* Assets.xcassets */,
@@ -127,6 +143,74 @@
 				FA702E9722F0FA4000EE9A13 /* Info.plist */,
 			);
 			path = TestGitApiTests;
+			sourceTree = "<group>";
+		};
+		FA702EA022F1005500EE9A13 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				FA702EA122F1008300EE9A13 /* GitSearchViewController.swift */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		FA702EA322F100A800EE9A13 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				FA702EAF22F250A700EE9A13 /* Protocols */,
+				FA702EAA22F239FF00EE9A13 /* Managers */,
+				FA702EAE22F2432500EE9A13 /* Constants */,
+				FA702EA722F237BA00EE9A13 /* Models */,
+				FA702EAB22F23A1F00EE9A13 /* View Models */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		FA702EA422F100BF00EE9A13 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				FA702EB222F254DA00EE9A13 /* RepoCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		FA702EA722F237BA00EE9A13 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				FA702EA822F237E000EE9A13 /* RepositoryModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		FA702EAA22F239FF00EE9A13 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				FA702EA522F100E900EE9A13 /* APIRequestManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		FA702EAB22F23A1F00EE9A13 /* View Models */ = {
+			isa = PBXGroup;
+			children = (
+				FA702EAC22F23A6B00EE9A13 /* GitRepositoriesViewModel.swift */,
+				FA702EB622F2596600EE9A13 /* RepoCellViewModel.swift */,
+			);
+			path = "View Models";
+			sourceTree = "<group>";
+		};
+		FA702EAE22F2432500EE9A13 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
+		FA702EAF22F250A700EE9A13 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				FA702EB422F257B400EE9A13 /* GitRepositoryViewModel.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -297,8 +381,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA702EB722F2596600EE9A13 /* RepoCellViewModel.swift in Sources */,
+				FA702EA622F100E900EE9A13 /* APIRequestManager.swift in Sources */,
+				FA702EAD22F23A6B00EE9A13 /* GitRepositoriesViewModel.swift in Sources */,
+				FA702EA922F237E000EE9A13 /* RepositoryModel.swift in Sources */,
 				FA702E7E22F0FA3E00EE9A13 /* AppDelegate.swift in Sources */,
 				FA702E8622F0FA3E00EE9A13 /* TestGitApi.xcdatamodeld in Sources */,
+				FA702EB522F257B400EE9A13 /* GitRepositoryViewModel.swift in Sources */,
+				FA702EA222F1008300EE9A13 /* GitSearchViewController.swift in Sources */,
+				FA702EB322F254DA00EE9A13 /* RepoCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

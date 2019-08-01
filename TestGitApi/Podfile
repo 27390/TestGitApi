@@ -7,7 +7,6 @@ target 'TestGitApi' do
 
   # Pods for TestGitApi
 pod 'Alamofire'
-pod 'SwiftyJSON'
 
   target 'TestGitApiTests' do
     inherit! :search_paths
