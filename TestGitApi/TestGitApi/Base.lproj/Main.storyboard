@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="QbR-5w-sTs">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="114" width="375" height="553"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="repoCell" id="gTS-va-cMq" customClass="RepoCell" customModule="TestGitApi" customModuleProvider="target">
@@ -53,24 +53,68 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="USY-Vt-Mx3"/>
                                 </connections>
                             </tableView>
+                            <searchBar contentMode="redraw" placeholder="search repositories" translatesAutoresizingMaskIntoConstraints="NO" id="NrW-8o-4j0">
+                                <rect key="frame" x="0.0" y="58" width="375" height="56"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="search"/>
+                                <connections>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="IZc-hS-rwr"/>
+                                </connections>
+                            </searchBar>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="QbR-5w-sTs" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="mh6-hS-XPM"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="NrW-8o-4j0" secondAttribute="trailing" id="4R1-lx-IQi"/>
+                            <constraint firstItem="NrW-8o-4j0" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Q6h-CT-QuP"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="top" secondItem="NrW-8o-4j0" secondAttribute="top" constant="6" id="QcX-Fs-6MJ"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="QbR-5w-sTs" secondAttribute="trailing" id="n6c-kw-7as"/>
                             <constraint firstItem="QbR-5w-sTs" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="o2z-7Z-G0Q"/>
                             <constraint firstItem="QbR-5w-sTs" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="u58-od-PIW"/>
+                            <constraint firstItem="QbR-5w-sTs" firstAttribute="top" secondItem="NrW-8o-4j0" secondAttribute="bottom" id="zRR-JJ-rEo"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="Lup-jl-Bdy"/>
                     <connections>
+                        <outlet property="gitSearchBar" destination="NrW-8o-4j0" id="f2a-ib-NFu"/>
                         <outlet property="tableView" destination="QbR-5w-sTs" id="fv5-e0-7XT"/>
+                        <segue destination="gey-Fl-ibe" kind="show" identifier="segueGetDetails" id="Xh1-SB-9zU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1072.8" y="85.907046476761622"/>
+        </scene>
+        <!--Repo Details View Controller-->
+        <scene sceneID="jmO-Tz-0dz">
+            <objects>
+                <viewController id="gey-Fl-ibe" customClass="RepoDetailsViewController" customModule="TestGitApi" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="oKM-VJ-68e">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Lorem ipsum ..." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="S1u-gF-akv">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="S1u-gF-akv" firstAttribute="top" secondItem="i64-Hh-a61" secondAttribute="top" id="0X1-cV-eqH"/>
+                            <constraint firstItem="S1u-gF-akv" firstAttribute="leading" secondItem="i64-Hh-a61" secondAttribute="leading" id="A4f-4P-6CX"/>
+                            <constraint firstItem="i64-Hh-a61" firstAttribute="trailing" secondItem="S1u-gF-akv" secondAttribute="trailing" id="LH3-HF-WnL"/>
+                            <constraint firstItem="i64-Hh-a61" firstAttribute="bottom" secondItem="S1u-gF-akv" secondAttribute="bottom" id="zYr-mA-VM7"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="i64-Hh-a61"/>
+                    </view>
+                    <connections>
+                        <outlet property="readmeTextView" destination="S1u-gF-akv" id="Sdu-cD-2j5"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dbt-tG-lwe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1890.4000000000001" y="82.3088455772114"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="tz0-9g-lzX">

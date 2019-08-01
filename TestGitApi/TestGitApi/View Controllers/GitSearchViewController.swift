@@ -10,19 +10,18 @@ import UIKit
 
 class GitSearchViewController: UIViewController {
     
+    @IBOutlet weak var gitSearchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
-    let gitRepoViewModel: GitRepositoryViewModel = GitRepositoriesViewModel()
-    let searchController = UISearchController(searchResultsController: nil)
+    
+    private let gitRepoViewModel: GitRepositoryViewModel = GitRepositoriesViewModel()
+    private let segueGetDetailsName = "segueGetDetails"
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        searchController.searchResultsUpdater = self
-        searchController.obscuresBackgroundDuringPresentation = false
-        searchController.searchBar.placeholder = "Search repos"
-        navigationItem.searchController = searchController
-        definesPresentationContext = true
-        // Do any additional setup after loading the view.
+        
+        
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -30,31 +29,20 @@ class GitSearchViewController: UIViewController {
         self.view.layoutIfNeeded()
     }
     
-    
-    // MARK: - Private instance methods
-    
-    func searchBarIsEmpty() -> Bool {
-        // Returns true if the text is empty or nil
-        return searchController.searchBar.text?.isEmpty ?? true
-    }
-
-    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
-    }
-
-    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
-        // to limit network activity, reload half a second after last key press.
-       
+        if let repoDetailsViewController = segue.destination as? RepoDetailsViewController, let index = sender as? Int {
+            repoDetailsViewController.repoDetailsModel = gitRepoViewModel.createRepositoryDetailsModelForIndex(index)
+        }
     }
     
     @objc func makeDataRequest() {
-        print("searching for: \(String(describing: searchController.searchBar.text))")
-        gitRepoViewModel.searchDataWithQuery(searchController.searchBar.text ?? "", success: {
+        print("searching for: \(String(describing: gitSearchBar.text))")
+        gitRepoViewModel.searchDataWithQuery(gitSearchBar.text ?? "", success: {
             self.tableView.reloadData()
         }) { (errorString) in
             print("error")
@@ -62,13 +50,17 @@ class GitSearchViewController: UIViewController {
     }
 }
 
-//MARK: UISearchResultsUpdating
-extension GitSearchViewController: UISearchResultsUpdating {
-    // MARK: - UISearchResultsUpdating Delegate
-    func updateSearchResults(for searchController: UISearchController) {
+//MARK: UISearchBarDelegate
+extension GitSearchViewController: UISearchBarDelegate {
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
         NSObject.cancelPreviousPerformRequests(withTarget: self, selector: #selector(makeDataRequest), object: nil)
         self.perform(#selector(makeDataRequest), with: nil, afterDelay: 0.5)
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
     }
 }
 
@@ -90,7 +82,9 @@ extension GitSearchViewController: UITableViewDataSource {
 
 //MARK: UITableViewDelegate
 extension GitSearchViewController: UITableViewDelegate {
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.performSegue(withIdentifier: segueGetDetailsName, sender: indexPath.row)
+    }
 }
 
 

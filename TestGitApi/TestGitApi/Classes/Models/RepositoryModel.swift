@@ -9,6 +9,9 @@
 import Foundation
 
 struct RepositoryModel: Codable {
-    var description: String?
-    var homepage: String?
+    let description: String?
+    let homepage: String?
+    let full_name: String
+    let forks_count: Int
+    var readmeFileContents: String?
 }

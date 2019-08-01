@@ -11,11 +11,7 @@ class GitRepositoriesViewModel {
     
    
     
-    var repositories = [RepositoryModel]() {
-        didSet {
-            print("Change strings: \(self.repositories)")
-        }
-    }
+    var repositories = [RepositoryModel]()
     
     public func searchDataWithQuery (_ query: String, error: querryFailCompletion) {
         APIRequestManager.sharedInstance.requestRepositoryList(searchQuery: query, success: {[weak self] (response) in
@@ -28,20 +24,34 @@ class GitRepositoriesViewModel {
             print ("in error \(dict)")
         }
     }
-    
-    
 }
 
 extension GitRepositoriesViewModel: GitRepositoryViewModel {
-    func searchDataWithQuery(_ query: String, success: @escaping () -> Void, error: (String) -> Void) {
+    
+    func createRepositoryDetailsModelForIndex(_ index: Int) -> RepoDetailsViewModel? {
+        if (index < repositories.count) {
+            return RepositoryDetailsViewModel.initWithRepository(repositories[index])
+        }
+        return nil
+    }
+    
+    func searchDataWithQuery(_ query: String, success: @escaping () -> Void, errorBlock: @escaping(String) -> Void) {
+        guard !query.isEmpty else {
+            self.repositories = []
+            success()
+            return
+        }
         APIRequestManager.sharedInstance.requestRepositoryList(searchQuery: query, success: {[weak self] (response) in
             do {
                 let data = try JSONSerialization.data(withJSONObject: response, options: [])
                 self?.repositories = try JSONDecoder().decode([RepositoryModel].self, from: data)
                 success()
-            } catch { print(error) }
-        }) { (dict) in
-            print ("in error \(dict)")
+            } catch {
+                print(error)
+                errorBlock("could not parse response")
+            }
+        }) { (errorString) in
+            errorBlock(errorString)
         }
     }
     

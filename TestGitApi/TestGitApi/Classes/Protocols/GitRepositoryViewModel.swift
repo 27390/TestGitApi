@@ -11,7 +11,8 @@ protocol GitRepositoryViewModel {
     typealias querryFailCompletion = (_ error: String) -> Void
     typealias querrySuccessCompletion = () -> Void
     
-    func searchDataWithQuery (_ query: String, success: @escaping querrySuccessCompletion, error: @escaping querryFailCompletion)
-    func getCellModelForIndex(_ index: Int) -> RepoCellViewModel
-    func getNumberOfItems() -> Int
+    func searchDataWithQuery (_ query: String, success: @escaping querrySuccessCompletion, errorBlock: @escaping querryFailCompletion)
+    func getCellModelForIndex (_ index: Int) -> RepoCellViewModel
+    func getNumberOfItems () -> Int
+    func createRepositoryDetailsModelForIndex (_ index: Int) -> RepoDetailsViewModel?
 }
